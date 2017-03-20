@@ -84,7 +84,14 @@ var SHOW_GRENADES = false
 //////////////////////////////////////// --- COLORS --- ///////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-// The variable "hp" can be used to represent an entitys hp from 0 to 255. Only applies to glow esp.
+/**
+ * Use special team/enemy colors?
+ *
+ * Overrides TEAM_COLOR & ENEMY_COLOR for GLOW_ESP
+ * ENEMY_COLOR fades from Color(255, 0, 0) to Color(0, 0, 255) based on health
+ * TEAM_COLOR fades from Color(0, 255, 0) to Color(255, 255, 255) based on health
+ */
+var SPECIAL_GLOW_ESP_COLORS = false
 
 /**
  * The color to highlight your team mates.

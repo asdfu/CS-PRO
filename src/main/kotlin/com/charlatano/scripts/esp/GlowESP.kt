@@ -49,11 +49,23 @@ internal fun glowEsp() = every(4) {
 				val team = me.team() == entity.team()
 				
 				if (SHOW_ENEMIES && !team) {
-					glowAddress.glow(ENEMY_COLOR)
-					entity.chams(ENEMY_COLOR)
+					if (!SPECIAL_GLOW_ESP_COLORS) {
+						glowAddress.glow(ENEMY_COLOR)
+						entity.chams(ENEMY_COLOR)
+					}
+					else {
+						glowAddress.glow(Color(hp, 0, 255-hp))
+						entity.chams(Color(hp, 0, 255-hp))
+					}
 				} else if (SHOW_TEAM && team) {
-					glowAddress.glow(TEAM_COLOR)
-					entity.chams(TEAM_COLOR)
+					if (!SPECIAL_GLOW_ESP_COLORS) {
+						glowAddress.glow(ENEMY_COLOR)
+						entity.chams(ENEMY_COLOR)
+					}
+					else {
+						glowAddress.glow(Color(255-hp, 255, 255-hp))
+						entity.chams(Color(255-hp, 255, 255-hp))
+					}
 				}
 			}
 			EntityType.CPlantedC4, EntityType.CC4 -> if (SHOW_BOMB) {
