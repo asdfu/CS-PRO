@@ -34,7 +34,7 @@ public var toggleBunnyHop = 1
 public var toggleTrigger = -1
 public var toggleFlash = -1
 
-fun Toggles() = every(10) {
+fun Toggles() = every(5) {
 	if (keyPressed(TOGGLE_KEY_AIM)) {
 		toggleAIM *= -1
 		Thread.sleep(250)
