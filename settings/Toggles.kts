@@ -16,30 +16,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
  
-package com.charlatano.settings
+import com.charlatano.settings.*
 
 // Key codes can be found @ https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx
  
- 
 // Aim toggle key.
-TOGGLE_KEY_AIM = 0x39 // 9 key
+TOGGLE_KEY_AIM = 97
 
 
 // RCS toggle key
-TOGGLE_KEY_RCS = 0x38 // 8 key
+TOGGLE_KEY_RCS = 98
 
 
 // ESP toggle key
-TOGGLE_KEY_ESP = 0x30 // 0 key
+TOGGLE_KEY_ESP = 96
 
 
 // Bunnyhop toggle key.
-TOGGLE_KEY_BUNNYHOP = 0x35 // 5 key
+TOGGLE_KEY_BUNNYHOP = 99
 
 
 // BoneTrigger toggle key.
-TOGGLE_KEY_TRIGGER = 0x36 // 6 key
+TOGGLE_KEY_TRIGGER = 100
 
 
 // ReducedFlash toggle key.
-TOGGLE_KEY_FLASH = 0x37 // 7 key
+TOGGLE_KEY_FLASH = 101

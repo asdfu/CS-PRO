@@ -18,28 +18,10 @@
  
 package com.charlatano.settings
 
-// Key codes can be found @ https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx
- 
- 
-// Aim toggle key.
-var TOGGLE_KEY_AIM = 0x39 // 9 key
 
-
-// RCS toggle key
-var TOGGLE_KEY_RCS = 0x38 // 8 key
-
-
-// ESP toggle key
-var TOGGLE_KEY_ESP = 0x30 // 0 key
-
-
-// Bunnyhop toggle key.
-var TOGGLE_KEY_BUNNYHOP = 0x35 // 5 key
-
-
-// BoneTrigger toggle key.
-var TOGGLE_KEY_TRIGGER = 0x36 // 6 key
-
-
-// ReducedFlash toggle key.
-var TOGGLE_KEY_FLASH = 0x37 // 7 key
+var TOGGLE_KEY_AIM = 0x61
+var TOGGLE_KEY_RCS = 0x62
+var TOGGLE_KEY_ESP = 0x60
+var TOGGLE_KEY_BUNNYHOP = 0x63
+var TOGGLE_KEY_TRIGGER = 0x64
+var TOGGLE_KEY_FLASH = 0x65
