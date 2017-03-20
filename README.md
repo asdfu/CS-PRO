@@ -1,7 +1,7 @@
 # Charlatano
 _Cheating is but a lifestyle_
 
-[![Build Status](https://travis-ci.org/Jire/Charlatano.svg?branch=master)](https://travis-ci.org/Jire/Charlatano)
+[![Build Status](https://travis-ci.org/Austin72/CS-PRO?branch=master)](https://travis-ci.org/Jire/Charlatano)
 [![License](https://img.shields.io/github/license/Jire/Charlatano.svg)](https://github.com/Jire/Charlatano/blob/master/LICENSE.txt)
 
 **From the creators of Abendigo** comes a brand new approach to cheating-- _Charlatano_ can be completely
