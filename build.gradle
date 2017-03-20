@@ -1,0 +1,147 @@
+/*
+ * Charlatano: Free and open-source (FOSS) cheat for CS:GO/CS:CO
+ * Copyright (C) 2017 - Thomas G. P. Nappo, Jonathan Beaudoin
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+import java.nio.file.Files
+
+buildscript {
+	ext.kotlin_version = '1.1.1'
+	
+	ext.gdxVersion = '1.9.5'
+	
+	repositories {
+		mavenCentral()
+		jcenter()
+	}
+	
+	dependencies {
+		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+		classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.4'
+	}
+}
+
+apply plugin: "idea"
+apply plugin: "java"
+apply plugin: "kotlin"
+apply plugin: "application"
+apply plugin: "com.github.johnrengelman.shadow"
+
+group "com.charlatano"
+version "0.9.8"
+
+mainClassName = "com.charlatano.Charlatano"
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: kotlin_version
+	compile group: 'org.jetbrains.kotlin', name: 'kotlin-script-util', version: kotlin_version
+	
+	compile group: "org.jire.arrowhead", name: "arrowhead", version: "1.3.2"
+	
+	compile group: "it.unimi.dsi", name: "fastutil", version: "7.0.13"
+	
+	compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+	compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
+	
+	compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
+	compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+	compile "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
+	
+	compile group: 'net.java.dev.jna', name: 'jna', version: '4.3.0'
+	compile group: 'net.java.dev.jna', name: 'jna-platform', version: '4.3.0'
+}
+
+jar {
+	manifest {
+		attributes 'Main-Class': mainClassName
+	}
+}
+
+shadowJar {
+	baseName = 'Charlatano'
+	classifier = null
+}
+
+task charlatano {
+	doLast {
+		def name = "CS-PRO $version"
+		
+		def dir = file("build/$name/")
+		if (dir.exists()) dir.deleteDir()
+		dir.mkdirs()
+		
+		def jarName = "${name}.jar"
+		def jar = file(new File(dir, jarName))
+		def allJar = file("build/libs/Charlatano-${version}.jar")
+		Files.copy(allJar.toPath(), jar.toPath())
+		
+		def bat = file(new File(dir, "Start ${name}.bat"))
+		Files.write(bat.toPath(), """@echo off
+
+cd /d "%~dp0"
+
+title CS-PRO ${version}
+echo.
+echo. Command     ^| Alias  ^| Function
+echo. ============o========o====================
+echo. rage        ^| (none) ^| loads rage settings
+echo. reload      ^| r      ^| reloads /settings
+echo. exit / quit ^| e / q  ^| stop CS:PRO
+echo. ============o========o====================
+echo. 
+set /p c=Enter start delay in seconds: 
+:l
+title CS-PRO ${version} ^| starting in %c% seconds
+timeout /t 1 /nobreak>nul
+set /a c = %c% - 1
+if %c%==-1 goto ll
+goto l
+:ll
+title CS-PRO ${version}
+cls
+mode con: cols=30 lines=5
+java -jar "CS-PRO ${version}.jar"
+pause""".getBytes())
+		
+		def dirSettings = file(new File(dir, "settings"))
+		def dirRageSettings = file(new File(dir, "rage"))
+		dirSettings.mkdirs()
+		dirRageSettings.mkdirs()
+		def settings = file("settings")
+		def rageSettings = file("rage")
+		settings.listFiles().each {
+			Files.copy(it.toPath(), file(new File(dirRageSettings, it.getName())).toPath())
+			Files.copy(it.toPath(), file(new File(dirSettings, it.getName())).toPath())
+		}
+		
+		Files.copy(file(project.configurations.compile.find {
+			it.name.startsWith("kotlin-compiler-${kotlin_version}.jar")
+		}).toPath(), file(new File(dir, "kotlin-compiler.jar")).toPath())
+	}
+}
+
+charlatano.dependsOn shadowJar
+charlatano.mustRunAfter shadowJar
+
+sourceSets {
+	main.java.srcDirs += 'src/main/java'
+	main.java.srcDirs += 'src/main/kotlin'
+	main.java.srcDirs += 'settings'
+}
