@@ -36,19 +36,19 @@ public var toggleFlash = -1
 
 fun Toggles() = every(10) {
 	if (keyPressed(TOGGLE_KEY_AIM)) {
-		toggleTrigger *= -1
+		toggleAIM *= -1
 		Thread.sleep(250)
 	}
 	if (keyPressed(TOGGLE_KEY_RCS)) {
-		toggleTrigger *= -1
+		toggleRCS *= -1
 		Thread.sleep(250)
 	}
 	if (keyPressed(TOGGLE_KEY_ESP)) {
-		toggleTrigger *= -1
+		toggleESP *= -1
 		Thread.sleep(250)
 	}
 	if (keyPressed(TOGGLE_KEY_BUNNYHOP)) {
-		toggleTrigger *= -1
+		toggleBunnyHop *= -1
 		Thread.sleep(250)
 	}
 	if (keyPressed(TOGGLE_KEY_TRIGGER)) {
@@ -56,7 +56,7 @@ fun Toggles() = every(10) {
 		Thread.sleep(250)
 	}
 	if (keyPressed(TOGGLE_KEY_FLASH)) {
-		toggleTrigger *= -1
+		toggleFlash *= -1
 		Thread.sleep(250)
 	}
 	return@every
