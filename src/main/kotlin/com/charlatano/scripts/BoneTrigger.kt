@@ -31,7 +31,7 @@ import org.jire.arrowhead.keyReleased
 import org.jire.arrowhead.keyPressed
 
 private val onBoneTriggerTarget = hook(1) {
-	if (ENABLE_BONE_TRIGGER && toggleTrigger > 0) {
+	if ((ENABLE_BONE_TRIGGER && toggleTrigger > 0) || toggleRage > 0) {
 	findTarget(me.position(), clientState.angle(), false,
 		BONE_TRIGGER_FOV, BONE_TRIGGER_BONE) >= 0
 	}
@@ -43,6 +43,9 @@ fun boneTrigger() = onBoneTriggerTarget {
 		mouse(MOUSEEVENTF_LEFTDOWN)
 		Thread.sleep(8 + randLong(16))
 		mouse(MOUSEEVENTF_LEFTUP)
-		Thread.sleep(80 + randLong(16))
+		if (toggleRage < 0)
+			Thread.sleep(96 + randLong(16))
+		else
+			Thread.sleep(32 + randLong(16))
 	}
 }

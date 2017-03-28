@@ -59,7 +59,7 @@ fun aim(currentAngle: Angle, dest: Angle, smoothing: Int,
 	
 	if (perfect) {
 		mouseMove((dx / 2).toInt(), (dy / 2).toInt())
-		Thread.sleep(20)
+		Thread.sleep(5)
 	} else HumanMouse.fastSteps(mousePos, target) { steps, i ->
 		val point = target
 		mousePos.refresh()

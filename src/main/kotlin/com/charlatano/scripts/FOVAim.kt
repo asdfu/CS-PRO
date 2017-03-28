@@ -45,7 +45,7 @@ fun fovAim() = every(AIM_DURATION) {
 	if (!ENABLE_AIM || toggleAIM < 0) return@every
 	
 	val aim = ACTIVATE_FROM_FIRE_KEY && keyPressed(FIRE_KEY)
-	val forceAim = keyPressed(FORCE_AIM_KEY)
+	val forceAim = keyPressed(FORCE_AIM_KEY) || toggleRage > 0
 	val pressed = aim or forceAim
 	var currentTarget = target.get()
 	
@@ -67,8 +67,8 @@ fun fovAim() = every(AIM_DURATION) {
 	val position = me.position()
 	if (currentTarget < 0) {
 		currentTarget = findTarget(position, currentAngle, aim)
-		if (currentTarget < 0) {
-			Thread.sleep(200 + randLong(350))
+		if (currentTarget < 0 && toggleRage < 0) {
+				Thread.sleep(50 + randLong(50))
 			return@every
 		}
 		target.set(currentTarget)
@@ -76,8 +76,11 @@ fun fovAim() = every(AIM_DURATION) {
 	
 	if (!currentTarget.canShoot()) {
 		reset()
-		Thread.sleep(200 + randLong(350))
-	} else if (currentTarget.onGround() && me.onGround()) {
+		if (toggleRage < 0)
+			Thread.sleep(50 + randLong(50))
+		else
+			Thread.sleep(5)
+	} else if (me.onGround()) {
 		val boneID = bone.get()
 		val bonePosition = Vector(
 				currentTarget.bone(0xC, boneID),
@@ -89,7 +92,7 @@ fun fovAim() = every(AIM_DURATION) {
 		
 		val aimSpeed = AIM_SPEED_MIN + randInt(AIM_SPEED_MAX - AIM_SPEED_MIN)
 		
-		if (weapon.sniper && me.isScoped() && AIM_SPEED_MAX > 10)
+		if ((weapon.sniper && me.isScoped() && AIM_SPEED_MAX > 10) || (toggleRage > 0 && AIM_SPEED_MAX > 10))
 			aim(currentAngle, dest, 10 + randInt(2),
 				sensMultiplier = 1.0,
 				perfect = perfect.getAndSet(false))
@@ -122,7 +125,7 @@ internal fun findTarget(position: Angle, angle: Angle, allowPerfect: Boolean,
 		val delta = abs(sin(toRadians(yawDiff)) * distance)
 		val fovDelta = abs((sin(toRadians(pitchDiff)) + sin(toRadians(yawDiff))) * distance)
 		
-		if (fovDelta <= lockFOV && delta < closestDelta) {
+		if ((fovDelta <= lockFOV && delta < closestDelta) || toggleRage > 0) {
 			closestDelta = delta
 			closestPlayer = entity
 			closestFOV = fovDelta
@@ -131,7 +134,7 @@ internal fun findTarget(position: Angle, angle: Angle, allowPerfect: Boolean,
 	
 	if (closestDelta == Double.MAX_VALUE || closestDelta < 0 || closestPlayer < 0) return -1
 	
-	if (PERFECT_AIM && allowPerfect && closestFOV <= PERFECT_AIM_FOV && randInt(100 + 1) <= PERFECT_AIM_CHANCE)
+	if ((PERFECT_AIM && allowPerfect && closestFOV <= PERFECT_AIM_FOV && randInt(100 + 1) <= PERFECT_AIM_CHANCE) || toggleRage > 0)
 		perfect.set(true)
 	
 	return closestPlayer

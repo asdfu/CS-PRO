@@ -31,10 +31,15 @@ public var toggleESP = 1
 public var toggleBunnyHop = 1
 
 // Start in "OFF" position
+public var toggleRage = -1
 public var toggleTrigger = -1
 public var toggleFlash = -1
 
 fun Toggles() = every(5) {
+	if (keyPressed(0x69) && keyPressed(0x68) && keyPressed(0x67)) { // 7 & 8 & 9 // WILL NOT TOGGLE TO RAGE SETTINGS
+		toggleRage *= -1
+		Thread.sleep(250)
+	}
 	if (keyPressed(TOGGLE_KEY_AIM)) {
 		toggleAIM *= -1
 		Thread.sleep(250)
