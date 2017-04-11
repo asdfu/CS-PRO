@@ -23,4 +23,4 @@ import com.charlatano.settings.*
  *
  * This ranges from 0F (absolutely no effect) to 255F.
  */
-FLASH_MAX_ALPHA = 200F
+FLASH_MAX_ALPHA = 224F

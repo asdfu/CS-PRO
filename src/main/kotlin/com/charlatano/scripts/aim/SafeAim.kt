@@ -16,16 +16,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+package com.charlatano.scripts.aim
+
+import com.charlatano.game.entity.isScoped
+import com.charlatano.game.me
 import com.charlatano.settings.*
+import com.charlatano.utils.safeAim
 
-// Note that trigger will only work when holding the FORCE_AIM_KEY
-
-/**
- * The field of view (in degrees, 0 to 360) for the bone trigger.
- */
-BONE_TRIGGER_FOV = 10
-
-/**
- * The bone to automatically fire at for the bone trigger.
- */
-BONE_TRIGGER_BONE = HEAD_BONE
+fun safeAim() = aimScript(AIM_DURATION, { ENABLE_SAFE_AIM }) { dest, current, aimSpeed ->
+	safeAim(current, dest, aimSpeed,
+			sensMultiplier = if (me.isScoped()) 1.0 else AIM_STRICTNESS,
+			perfect = perfect.getAndSet(false))
+}

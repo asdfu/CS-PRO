@@ -62,7 +62,7 @@ SHOW_ENEMIES = true
  * Enabling this can allow you to see players at a further distance,
  * but you may see some "ghost" players which are really not there.
  */
-SHOW_DORMANT = false
+SHOW_DORMANT = true
 
 /**
  * Whether or not to highlight the bomb.
@@ -72,12 +72,12 @@ SHOW_BOMB = true
 /**
  * Whether or not to highlight weapons.
  */
-SHOW_WEAPONS = false
+SHOW_WEAPONS = true
 
 /**
  * Whether or not to highlight grenades.
  */
-SHOW_GRENADES = false
+SHOW_GRENADES = true
 
 
 
@@ -92,7 +92,7 @@ SHOW_GRENADES = false
  * ENEMY_COLOR fades from Color(255, 0, 0) to Color(0, 0, 255) based on health
  * TEAM_COLOR fades from Color(0, 255, 0) to Color(255, 255, 255) based on health
  */
-SPECIAL_GLOW_ESP_COLORS = false
+SPECIAL_GLOW_ESP_COLORS = true
 
 /**
  * The color to highlight your team mates.

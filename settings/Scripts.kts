@@ -26,10 +26,9 @@ import com.charlatano.settings.*
  * You need to unbind the bunnyhop key, and bind mwheelup and mwheeldown to jump.
  * To do this, type the following commands into the in-game developer console:
  * unbind "space"
- * bind "mwheelup" "+jump"
  * bind "mwheeldown" "+jump"
  */
-ENABLE_BUNNY_HOP = false
+ENABLE_BUNNY_HOP = true
 
 /**
  * Enables the recoil control system (RCS) script.
@@ -42,19 +41,28 @@ ENABLE_RCS = true
 ENABLE_ESP = true
 
 /**
- * Enables the aim script.
+ * Enables the safe aim script.
+ *
+ * This aim script is safe to use on FaceIT.
  */
-ENABLE_AIM = true
+ENABLE_SAFE_AIM = false
+
+/**
+ * Enables the write aim script.
+ *
+ * This aim script is NOT safe to use on FaceIT.
+ */
+ENABLE_WRITE_AIM = true
 
 /**
  * Enables the bone trigger bot script.
  */
-ENABLE_BONE_TRIGGER = false
+ENABLE_BONE_TRIGGER = true
 
 /**
  * Enables the reduced flash script.
  */
-ENABLE_REDUCED_FLASH = true
+ENABLE_REDUCED_FLASH = false
 
 /**
  * Enables the bomb timer script.

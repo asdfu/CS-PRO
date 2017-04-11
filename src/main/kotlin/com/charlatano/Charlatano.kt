@@ -23,6 +23,8 @@ package com.charlatano
 import com.charlatano.game.CSGO
 import com.charlatano.overlay.Overlay
 import com.charlatano.scripts.*
+import com.charlatano.scripts.aim.safeAim
+import com.charlatano.scripts.aim.writeAim
 import com.charlatano.scripts.esp.esp
 import com.charlatano.settings.*
 import com.charlatano.utils.Dojo
@@ -43,7 +45,8 @@ fun main(args: Array<String>) {
 	bunnyHop()
 	rcs()
 	esp()
-	fovAim()
+	writeAim()
+	safeAim()
 	boneTrigger()
 	reducedFlash()
 	bombTimer()
@@ -58,6 +61,7 @@ fun main(args: Array<String>) {
 			"exit", "quit", "e", "q" -> System.exit(0)
 			"reload", "r" -> loadSettings()
 			"rage" -> loadRage()
+			"reset" -> resetToggles()
 		}
 	}
 }
@@ -90,4 +94,14 @@ private fun loadRage() {
 	
 	val needsOverlay = ENABLE_BOMB_TIMER or (ENABLE_ESP and (SKELETON_ESP or BOX_ESP))
 	if (Overlay.hwnd == null && needsOverlay) Overlay.open()
+}
+
+private fun resetToggles() {
+	toggleAIM = 1
+	toggleRCS = 1
+	toggleESP = 1
+	toggleBunnyHop = 1
+	toggleRage = -1
+	toggleTrigger = -1
+	toggleFlash = -1
 }

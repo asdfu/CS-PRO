@@ -34,21 +34,22 @@ ACTIVATE_FROM_FIRE_KEY = true
  *
  * By default, this uses the backward mouse button
  * (button 5, the button on the bottom left of gaming mice).
+ * Also the key used to activate trigger.
  */
 FORCE_AIM_KEY = 5
 
 /**
  * The field of view of the aimbot, in degrees (0 to 360).
  */
-AIM_FOV = 190
+AIM_FOV = 360
 
 /**
  * The aimbot's "playback" speed, the higher the value the slower the playback.
  *
  * The minimum value is 1, and max must always be greater than min.
  */
-AIM_SPEED_MIN = 42
-AIM_SPEED_MAX = 52
+AIM_SPEED_MIN = 22
+AIM_SPEED_MAX = 24
 
 /**
  * The strictness, or "stickiness" of the aimbot; the higher the number, the
@@ -56,7 +57,7 @@ AIM_SPEED_MAX = 52
  *
  * The minimum value is 1.0
  */
-AIM_STRICTNESS = 3.1
+AIM_STRICTNESS = 2.1
 
 
 
@@ -68,12 +69,12 @@ AIM_STRICTNESS = 3.1
  * Whether or not to use perfect aim, which will instantaneously snap
  * to the aim bone once you are within the [PERFECT_AIM_FOV].
  */
-PERFECT_AIM = false
+PERFECT_AIM = true
 
 /**
  * The FOV, in degrees (0 to 360) to snap for perfect aim.
  */
-PERFECT_AIM_FOV = 27
+PERFECT_AIM_FOV = 30
 
 /**
  * The chance, from 1% to 100% (0 to 100) for perfect aim to activate.
@@ -113,9 +114,9 @@ AIM_DURATION = 1
 /**
  * The amount of sprayed shots until the aimbot shifts to aiming at the [SHOULDER_BONE].
  */
-SHIFT_TO_SHOULDER_SHOTS = 4
+SHIFT_TO_SHOULDER_SHOTS = 2
 
 /**
  * The amount of sprayed shots until the aimbot shifts to aiming at the [BODY_BONE].
  */
-SHIFT_TO_BODY_SHOTS = 7
+SHIFT_TO_BODY_SHOTS = 9

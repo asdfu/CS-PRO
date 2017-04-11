@@ -20,25 +20,26 @@ import com.charlatano.settings.*
 
 // Key codes can be found @ https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx
  
+ 
 // Aim toggle key.
-TOGGLE_KEY_AIM = 97
+TOGGLE_KEY_AIM = 0x61
 
 
 // RCS toggle key
-TOGGLE_KEY_RCS = 98
+TOGGLE_KEY_RCS = 0x62
 
 
 // ESP toggle key
-TOGGLE_KEY_ESP = 96
+TOGGLE_KEY_ESP = 0x60
 
 
 // Bunnyhop toggle key.
-TOGGLE_KEY_BUNNYHOP = 99
+TOGGLE_KEY_BUNNYHOP = 0x63
 
 
 // BoneTrigger toggle key.
-TOGGLE_KEY_TRIGGER = 100
+TOGGLE_KEY_TRIGGER = 0x64
 
 
 // ReducedFlash toggle key.
-TOGGLE_KEY_FLASH = 101
+TOGGLE_KEY_FLASH = 0x65

@@ -16,16 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import com.charlatano.settings.*
+package com.charlatano.scripts.aim
 
-// Note that trigger will only work when holding the FORCE_AIM_KEY
+import com.charlatano.settings.AIM_DURATION
+import com.charlatano.settings.ENABLE_WRITE_AIM
+import com.charlatano.utils.writeAim
 
-/**
- * The field of view (in degrees, 0 to 360) for the bone trigger.
- */
-BONE_TRIGGER_FOV = 10
-
-/**
- * The bone to automatically fire at for the bone trigger.
- */
-BONE_TRIGGER_BONE = HEAD_BONE
+fun writeAim() = aimScript(AIM_DURATION, { ENABLE_WRITE_AIM }) { dest, current, aimSpeed ->
+	writeAim(dest, current, aimSpeed.toDouble())
+}
