@@ -95,8 +95,10 @@ internal inline fun <R> aimScript(duration: Int, crossinline precheck: () -> Boo
 	var currentTarget = target.get()
 	
 	if (!pressed || toggleAIM < 0 || CSGO.scaleFormDLL.boolean(ScaleFormOffsets.bCursorEnabled)) {
-		reset()
-		return@every
+		if (toggleRage < 0) {
+			reset()
+			return@every
+		}
 	}
 	
 	if (!CLASSIC_OFFENSIVE) {
@@ -125,6 +127,10 @@ internal inline fun <R> aimScript(duration: Int, crossinline precheck: () -> Boo
 		if (toggleRage < 0)
 			Thread.sleep(16 + randLong(16))
 	} else {
+		val weapon = me.weapon()
+		if (weapon.isAWP)
+			bone.set(BODY_BONE)
+		
 		val boneID = bone.get()
 		val bonePosition = Vector(
 				currentTarget.bone(0xC, boneID),
@@ -135,9 +141,9 @@ internal inline fun <R> aimScript(duration: Int, crossinline precheck: () -> Boo
 		if (AIM_ASSIST_MODE) destinationAngle.finalize(currentAngle, AIM_ASSIST_STRICTNESS / 100.0)
 		
 		val aimSpeed = AIM_SPEED_MIN + randInt(AIM_SPEED_MAX - AIM_SPEED_MIN)
-		if (toggleRage < 0)
-			doAim(destinationAngle, currentAngle, aimSpeed)
-		if (toggleRage > 0)
+		if ((weapon.sniper && weapon.boltAction && me.isScoped()) || toggleRage > 0) 
 			doAim(destinationAngle, currentAngle, 1)
+		else
+			doAim(destinationAngle, currentAngle, aimSpeed)
 	}
 }

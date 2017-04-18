@@ -35,4 +35,5 @@ fun reducedFlash() = onFlash {
 	val me: Player = clientDLL.uint(dwLocalPlayer)
 	if (me > 0 && !me.dead() && toggleRage > 0) csgoEXE[me + flFlashMaxAlpha] = FLASH_MAX_ALPHA
 	else if (me > 0 && !me.dead() && toggleRage > 0) csgoEXE[me + flFlashMaxAlpha] = 0F
+	else if (me.dead()) csgoEXE[me + flFlashMaxAlpha] = 0F
 }

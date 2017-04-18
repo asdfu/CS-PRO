@@ -20,7 +20,7 @@ package com.charlatano.game
 
 enum class Weapons(val id: Int, val automatic: Boolean = false, val grenade: Boolean = false,
                    val knife: Boolean = false, val sniper: Boolean = false, val boltAction: Boolean = false,
-                   val pistol: Boolean = false, val shotgun: Boolean = false) {
+                   val pistol: Boolean = false, val shotgun: Boolean = false, val isAWP: Boolean = false) {
 	
 	NONE(0),
 	DESERT_EAGLE(1, pistol = true),
@@ -29,7 +29,7 @@ enum class Weapons(val id: Int, val automatic: Boolean = false, val grenade: Boo
 	GLOCK(4, pistol = true),
 	AK47(7, automatic = true),
 	AUG(8, automatic = true),
-	AWP(9, sniper = true, boltAction = true),
+	AWP(9, sniper = true, boltAction = true, isAWP = true),
 	FAMAS(10, automatic = true),
 	G3SG1(11, sniper = true),
 	GALIL(13, automatic = true),
