@@ -7,3 +7,6 @@ out
 .idea/tasks.xml
 .idea/libraries
 .idea/gradle.xml
+to_exe/.settings/org.eclipse.core.resources.prefs
+to_exe/.classpath
+to_exe/.project
