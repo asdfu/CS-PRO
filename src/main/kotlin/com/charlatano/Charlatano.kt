@@ -28,6 +28,7 @@ import com.charlatano.scripts.aim.writeAim
 import com.charlatano.scripts.esp.esp
 import com.charlatano.settings.*
 import com.charlatano.utils.Dojo
+import java.io.Console
 import java.io.File
 import java.io.FileReader
 import java.util.*
@@ -52,8 +53,20 @@ fun main(args: Array<String>) {
 	bombTimer()
 	Toggles()
 	
-	Thread.sleep(10_000) // wait a bit to catch everything
+	Thread.sleep(5_000) // wait a bit to catch everything
 	System.gc() // then cleanup
+	
+	System.out.println(" Command     | Alias  | Function");
+	System.out.println("  =============+========+=========================")
+	System.out.println(" | clear       | cls, c | clears console screen   |")
+	System.out.println(" | exit / quit | e, q   | stop CS:PRO             |")
+	System.out.println(" | rage        |        | loads rage settings     |")
+	System.out.println(" | reload      | r      | reloads /settings       |")
+	System.out.println(" | reset       |        | sets toggles to default |")
+	System.out.println(" | toggles     | t      | show what is toggled    |")
+	System.out.println("  =============+========+=========================")
+	System.out.println()
+	System.out.print("> ")
 	
 	val scanner = Scanner(System.`in`)
 	while (!Thread.interrupted()) {
@@ -62,6 +75,8 @@ fun main(args: Array<String>) {
 			"reload", "r" -> loadSettings()
 			"rage" -> loadRage()
 			"reset" -> resetToggles()
+			"toggles", "t" -> printToggles()
+			"cls", "clear", "c" -> clearScreen()
 		}
 	}
 }
@@ -76,6 +91,8 @@ private fun loadSettings() {
 	}
 	
 	toggleRage = -1
+	System.out.println("Loaded settings.")
+	System.out.print("> ")
 	
 	val needsOverlay = ENABLE_BOMB_TIMER or (ENABLE_ESP and (SKELETON_ESP or BOX_ESP))
 	if (Overlay.hwnd == null && needsOverlay) Overlay.open()
@@ -91,6 +108,8 @@ private fun loadRage() {
 	}
 	
 	toggleRage = 1
+	System.out.println("Rage settings loaded, and rage mode set to 1.");
+	System.out.print("> ");
 	
 	val needsOverlay = ENABLE_BOMB_TIMER or (ENABLE_ESP and (SKELETON_ESP or BOX_ESP))
 	if (Overlay.hwnd == null && needsOverlay) Overlay.open()
@@ -102,6 +121,26 @@ private fun resetToggles() {
 	toggleESP = 1
 	toggleBunnyHop = 1
 	toggleRage = -1
-	toggleTrigger = -1
-	toggleFlash = -1
+	toggleTrigger = 1
+	toggleFlash = 1
+	System.out.println("All togglables set to 1, Rage set to 0.")
+	System.out.print("> ");
+}
+
+private fun printToggles(){
+	System.out.println("AIM      = " + toggleAIM)
+	System.out.println("BunnyHop = " + toggleBunnyHop)
+	System.out.println("ESP      = " + toggleESP)
+	System.out.println("Flash    = " + toggleFlash)
+	System.out.println("Rage     = " + toggleRage)
+	System.out.println("RCS      = " + toggleRCS)
+	System.out.println("Trigger  = " + toggleTrigger)
+	System.out.print("> ");
+}
+
+private fun clearScreen() {
+	repeat(512) { i ->
+		System.out.println("\b")
+	}
+	System.out.print("> ")
 }

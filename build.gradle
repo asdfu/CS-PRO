@@ -97,26 +97,17 @@ task charlatano {
 
 cd /d "%~dp0"
 
-title CS-PRO ${version}                                       ^|%random%^|
-echo.
-echo. Command     ^| Alias  ^| Function
-echo. ============o========o====================
-echo. rage        ^| (none) ^| loads rage settings
-echo. reload      ^| r      ^| reloads /settings
-echo. exit / quit ^| e / q  ^| stop CS:PRO
-echo. ============o========o====================
-echo. 
+title CS-PRO ${version}                                                            ^|%random%^|
 set /p c=Enter start delay in seconds: 
 :l
-title CS-PRO ${version} ^| starting in %c% seconds                                       ^|%random%^|
+title CS-PRO ${version} ^| starting in %c% seconds                                                                        ^|%random%^|
 timeout /t 1 /nobreak>nul
 set /a c = %c% - 1
 if %c%==-1 goto ll
 goto l
 :ll
-title CS-PRO ${version}        ^|%random%^|
+title CS-PRO ${version}                                                                                               ^|%random%^|
 cls
-mode con: cols=30 lines=5
 java -jar "CS-PRO ${version}.jar"
 pause""".getBytes())
 		
