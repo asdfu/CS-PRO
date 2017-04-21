@@ -141,8 +141,12 @@ internal inline fun <R> aimScript(duration: Int, crossinline precheck: () -> Boo
 		if (AIM_ASSIST_MODE) destinationAngle.finalize(currentAngle, AIM_ASSIST_STRICTNESS / 100.0)
 		
 		val aimSpeed = AIM_SPEED_MIN + randInt(AIM_SPEED_MAX - AIM_SPEED_MIN)
-		if ((weapon.sniper && weapon.boltAction && me.isScoped()) || toggleRage > 0) 
+		if ((toggleRage > 0) || (PERFECT_AIM && allowPerfect && closestFOV <= PERFECT_AIM_FOV && randInt(100 + 1) <= PERFECT_AIM_CHANCE))
 			doAim(destinationAngle, currentAngle, 1)
+		else if (weapon.sniper && weapon.boltAction && me.isScoped()) {
+			doAim(destinationAngle, currentAngle, 3)
+			doAim(destinationAngle, currentAngle, 1)
+		}
 		else
 			doAim(destinationAngle, currentAngle, aimSpeed)
 	}

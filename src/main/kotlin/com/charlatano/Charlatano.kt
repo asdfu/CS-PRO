@@ -56,7 +56,7 @@ fun main(args: Array<String>) {
 	Thread.sleep(5_000) // wait a bit to catch everything
 	System.gc() // then cleanup
 	
-	System.out.println(" Command     | Alias  | Function");
+	System.out.println("   Command     | Alias  | Function");
 	System.out.println("  =============+========+=========================")
 	System.out.println(" | clear       | cls, c | clears console screen   |")
 	System.out.println(" | exit / quit | e, q   | stop CS:PRO             |")
@@ -66,10 +66,11 @@ fun main(args: Array<String>) {
 	System.out.println(" | toggles     | t      | show what is toggled    |")
 	System.out.println("  =============+========+=========================")
 	System.out.println()
-	System.out.print("> ")
 	
 	val scanner = Scanner(System.`in`)
 	while (!Thread.interrupted()) {
+		System.out.println()
+		System.out.print("> ")
 		when (scanner.nextLine()) {
 			"exit", "quit", "e", "q" -> System.exit(0)
 			"reload", "r" -> loadSettings()
@@ -92,7 +93,6 @@ private fun loadSettings() {
 	
 	toggleRage = -1
 	System.out.println("Loaded settings.")
-	System.out.print("> ")
 	
 	val needsOverlay = ENABLE_BOMB_TIMER or (ENABLE_ESP and (SKELETON_ESP or BOX_ESP))
 	if (Overlay.hwnd == null && needsOverlay) Overlay.open()
@@ -109,7 +109,6 @@ private fun loadRage() {
 	
 	toggleRage = 1
 	System.out.println("Rage settings loaded, and rage mode set to 1.");
-	System.out.print("> ");
 	
 	val needsOverlay = ENABLE_BOMB_TIMER or (ENABLE_ESP and (SKELETON_ESP or BOX_ESP))
 	if (Overlay.hwnd == null && needsOverlay) Overlay.open()
@@ -123,8 +122,7 @@ private fun resetToggles() {
 	toggleRage = -1
 	toggleTrigger = 1
 	toggleFlash = 1
-	System.out.println("All togglables set to 1, Rage set to 0.")
-	System.out.print("> ");
+	System.out.println("All togglables set to 1, Rage set to -1.")
 }
 
 private fun printToggles(){
@@ -135,12 +133,20 @@ private fun printToggles(){
 	System.out.println("Rage     = " + toggleRage)
 	System.out.println("RCS      = " + toggleRCS)
 	System.out.println("Trigger  = " + toggleTrigger)
-	System.out.print("> ");
 }
 
 private fun clearScreen() {
 	repeat(512) { i ->
-		System.out.println("\b")
+		System.out.print("\b")
 	}
-	System.out.print("> ")
+	System.out.println("   Command     | Alias  | Function");
+	System.out.println("  =============+========+=========================")
+	System.out.println(" | clear       | cls, c | clears console screen   |")
+	System.out.println(" | exit / quit | e, q   | stop CS:PRO             |")
+	System.out.println(" | rage        |        | loads rage settings     |")
+	System.out.println(" | reload      | r      | reloads /settings       |")
+	System.out.println(" | reset       |        | sets toggles to default |")
+	System.out.println(" | toggles     | t      | show what is toggled    |")
+	System.out.println("  =============+========+=========================")
+	System.out.println()
 }
