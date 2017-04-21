@@ -56,16 +56,7 @@ fun main(args: Array<String>) {
 	Thread.sleep(5_000) // wait a bit to catch everything
 	System.gc() // then cleanup
 	
-	System.out.println("   Command     | Alias  | Function");
-	System.out.println("  =============+========+=========================")
-	System.out.println(" | clear       | cls, c | clears console screen   |")
-	System.out.println(" | exit / quit | e, q   | stop CS:PRO             |")
-	System.out.println(" | rage        |        | loads rage settings     |")
-	System.out.println(" | reload      | r      | reloads /settings       |")
-	System.out.println(" | reset       |        | sets toggles to default |")
-	System.out.println(" | toggles     | t      | show what is toggled    |")
-	System.out.println("  =============+========+=========================")
-	System.out.println()
+	clearScreen()
 	
 	val scanner = Scanner(System.`in`)
 	while (!Thread.interrupted()) {
@@ -137,7 +128,7 @@ private fun printToggles(){
 
 private fun clearScreen() {
 	repeat(512) { i ->
-		System.out.print("\b")
+		System.out.print("\n")
 	}
 	System.out.println("   Command     | Alias  | Function");
 	System.out.println("  =============+========+=========================")

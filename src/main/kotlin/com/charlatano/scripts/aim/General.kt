@@ -25,6 +25,7 @@ import com.charlatano.scripts.*
 import com.charlatano.settings.*
 import com.charlatano.utils.*
 import org.jire.arrowhead.keyPressed
+import java.io.Console
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicLong
@@ -141,11 +142,17 @@ internal inline fun <R> aimScript(duration: Int, crossinline precheck: () -> Boo
 		if (AIM_ASSIST_MODE) destinationAngle.finalize(currentAngle, AIM_ASSIST_STRICTNESS / 100.0)
 		
 		val aimSpeed = AIM_SPEED_MIN + randInt(AIM_SPEED_MAX - AIM_SPEED_MIN)
-		if (toggleRage > 0)
+		if (toggleRage > 0) {
 			doAim(destinationAngle, currentAngle, 1)
-		else if (weapon.sniper && weapon.boltAction && me.isScoped()) {
-			doAim(destinationAngle, currentAngle, 3)
+			if (weapon.sniper && !me.isScoped())
+				return@every
+			else
+				click()
+			if (!currentTarget.canShoot())
+				doAim(currentAngle, destinationAngle, 1)
+		} else if (weapon.sniper && weapon.boltAction && me.isScoped()) {
 			doAim(destinationAngle, currentAngle, 1)
+			click()
 		}
 		else
 			doAim(destinationAngle, currentAngle, aimSpeed)

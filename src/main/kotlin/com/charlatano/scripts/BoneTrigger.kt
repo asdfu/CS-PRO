@@ -54,3 +54,13 @@ fun boneTrigger() = onBoneTriggerTarget {
 			Thread.sleep(16 + randLong(8))
 	}
 }
+
+public fun click() {
+		mouse(MOUSEEVENTF_LEFTDOWN)
+		Thread.sleep(8 + randLong(16))
+		mouse(MOUSEEVENTF_LEFTUP)
+		if (toggleRage < 0)
+			Thread.sleep(96 + randLong(16))
+		else
+			Thread.sleep(8 + randLong(8))
+}
