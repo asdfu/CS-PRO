@@ -21,6 +21,7 @@ package com.charlatano.game.entity
 import com.charlatano.game.CSGO.csgoEXE
 import com.charlatano.game.me
 import com.charlatano.game.netvars.NetVarOffsets.bSpottedByMask
+import com.charlatano.game.netvars.NetVarOffsets.bSpotted
 import com.charlatano.game.netvars.NetVarOffsets.dwModel
 import com.charlatano.game.netvars.NetVarOffsets.iTeamNum
 import com.charlatano.game.netvars.NetVarOffsets.vecOrigin
@@ -38,6 +39,13 @@ internal fun Entity.spotted(): Boolean {
 	val meID = csgoEXE.int(me + dwIndex) - 1
 	val spottedByMask = csgoEXE.uint(this + bSpottedByMask)
 	val result = spottedByMask and (1 shl meID).toLong()
+	return result != 0L
+}
+
+internal fun Entity.spottedNoMask(): Boolean {
+	val meID = csgoEXE.int(me + dwIndex) - 1
+	val spotted = csgoEXE.uint(this + bSpotted)
+	val result = spotted and (1 shl meID).toLong()
 	return result != 0L
 }
 

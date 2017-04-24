@@ -54,8 +54,18 @@ internal fun glowEsp() = every(4) {
 						entity.chams(ENEMY_COLOR)
 					}
 					else {
-						glowAddress.glow(Color(hp, 0, 255-hp))
-						entity.chams(Color(hp, 0, 255-hp))
+						if (entity.spotted()) {
+							glowAddress.glow(Color(hp, 224, 255-hp))
+							entity.chams(Color(hp, 224, 255-hp))
+						}
+						if (entity.spottedNoMask()) {
+							glowAddress.glow(Color(hp, 128, 255-hp))
+							entity.chams(Color(hp, 128, 255-hp))
+						}
+						else {
+							glowAddress.glow(Color(hp, 0, 255-hp))
+							entity.chams(Color(hp, 0, 255-hp))
+						}
 					}
 				} else if (SHOW_TEAM && team) {
 					if (!SPECIAL_GLOW_ESP_COLORS) {

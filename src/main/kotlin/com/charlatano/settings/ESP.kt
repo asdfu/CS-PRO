@@ -88,7 +88,7 @@ var SHOW_GRENADES = false
  * Use special team/enemy colors?
  *
  * Overrides TEAM_COLOR & ENEMY_COLOR for GLOW_ESP
- * ENEMY_COLOR fades from Color(255, 0, 0) to Color(0, 0, 255) based on health
+ * ENEMY_COLOR fades from Color(255, 0, 0) to Color(0, 0, 255) based on health greeness is also determined if visible. When spotted by teammates some green, when spotted by you more green.
  * TEAM_COLOR fades from Color(0, 255, 0) to Color(255, 255, 255) based on health
  */
 var SPECIAL_GLOW_ESP_COLORS = false
