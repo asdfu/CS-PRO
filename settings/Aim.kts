@@ -57,7 +57,7 @@ AIM_SPEED_MAX = 24
  *
  * The minimum value is 1.0
  */
-AIM_STRICTNESS = 2.1
+AIM_STRICTNESS = 1.0
 
 
 

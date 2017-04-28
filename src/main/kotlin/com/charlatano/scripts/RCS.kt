@@ -84,7 +84,11 @@ fun rcs() = every(RCS_DURATION) {
 		normalize()
 	}
 	
-	safeAim(clientState.angle(), view, RCS_SMOOTHING)
+	// maybe swap with flat aim for better accuracy
+	// but really you'd only need it in LEM+
+	
+	pathAim(clientState.angle(), view, RCS_SMOOTHING)
+	//flatAim(clientState.angle(), view, RCS_SMOOTHING + 0.0)
 	
 	lastPunch[0] = punch.x
 	lastPunch[1] = punch.y
