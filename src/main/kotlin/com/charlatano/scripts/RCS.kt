@@ -84,11 +84,8 @@ fun rcs() = every(RCS_DURATION) {
 		normalize()
 	}
 	
-	// maybe swap with flat aim for better accuracy
-	// but really you'd only need it in LEM+
-	
-	pathAim(clientState.angle(), view, RCS_SMOOTHING)
-	//flatAim(clientState.angle(), view, RCS_SMOOTHING + 0.0)
+		pathAim(clientState.angle(), view, RCS_SMOOTHING)
+		//flatAim(clientState.angle(), view, RCS_SMOOTHING.toDouble())
 	
 	lastPunch[0] = punch.x
 	lastPunch[1] = punch.y

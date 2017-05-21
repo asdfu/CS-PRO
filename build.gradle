@@ -19,7 +19,7 @@
 import java.nio.file.Files
 
 buildscript {
-	ext.kotlin_version = '1.1.2'
+	ext.kotlin_version = '1.1.2-2'
 	ext.jnaVersion = '4.4.0'
 	ext.gdxVersion = '1.9.6'
 	
@@ -41,7 +41,7 @@ apply plugin: "application"
 apply plugin: "com.github.johnrengelman.shadow"
 
 group "com.charlatano"
-version "1.0.0.mod"
+version "1.0.2.mod"
 
 mainClassName = "com.charlatano.Charlatano"
 
@@ -95,16 +95,16 @@ task charlatano {
 
 cd /d "%~dp0"
 
-title CS-PRO ${version}                                                            ^|%random%^|
+title CS-PRO ${version}                                                                                                                                                ^|%random%^|
 set /p c=Enter start delay in seconds: 
 :l
-title CS-PRO ${version} ^| starting in %c% seconds                                                                        ^|%random%^|
+title CS-PRO ${version} ^| starting in %c% seconds                                                                                                                                                 ^|%random%^|
 timeout /t 1 /nobreak>nul
 set /a c = %c% - 1
 if %c%==-1 goto ll
 goto l
 :ll
-title CS-PRO ${version}                                                                                               ^|%random%^|
+title CS-PRO ${version}                                                                                                                                                                      ^|%random%^|
 cls
 java -jar "CS-PRO ${version}.jar"
 pause""".getBytes())

@@ -127,7 +127,7 @@ private fun printToggles(){
 }
 
 private fun clearScreen() {
-	repeat(512) { i ->
+	repeat(512) { _ ->
 		System.out.print("\n")
 	}
 	System.out.println("   Command     | Alias  | Function");

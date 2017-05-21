@@ -40,10 +40,10 @@ The first step is to compile the source code into a usable cheat program.
 * Double click on the "_build_" (_build.bat_) script and wait for it to complete
 
 Once those steps are complete, the usable cheat program can be found within the _build_
-directory, and will in a directory called **Charlatano 1.0.0**.
+directory, and will in a directory called **Charlatano 1.0.2**.
 
-From within the **Charlatano 1.0.0** directory, you can start the cheat by running
-the _"Start Charlatano 1.0.0"_ script.
+From within the **Charlatano 1.0.2** directory, you can start the cheat by running
+the _"Start Charlatano 1.0.2"_ script.
 
 Before starting the cheat, you should already be spawned in a game with a weapon in hand!
 
@@ -51,7 +51,7 @@ Before starting the cheat, you should already be spawned in a game with a weapon
 
 **Beginner's Guide Video**
 
-[![Beginner's Video](http://i.imgur.com/rjnAfR9.png)](http://www.youtube.com/watch?v=xbh3-mVXFOA "Charlatano")
+[![Beginner's Video](http://i.imgur.com/pVLW5Yr.png)](https://www.youtube.com/watch?v=PapjDtR0OMY "Charlatano")
 
 ---
 
@@ -73,3 +73,4 @@ GNU Affero General Public License for more details.
 
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
+```

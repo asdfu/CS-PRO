@@ -149,8 +149,8 @@ internal inline fun <R> aimScript(duration: Int, crossinline precheck: () -> Boo
 			else
 				click()
 		} else if (weapon.sniper && weapon.boltAction && me.isScoped()) {
-			doAim(destinationAngle, currentAngle, 1)
-			click()
+			doAim(destinationAngle, currentAngle, 3)
+			doAim(destinationAngle, currentAngle, 2)
 		}
 		else
 			doAim(destinationAngle, currentAngle, aimSpeed)
