@@ -35,34 +35,43 @@ public var toggleFlash = 1
 // Start in "OFF" position
 public var toggleRage = -1
 
+
 fun Toggles() = every(5) {
-	if (keyPressed(0x69) && keyPressed(0x68) && keyPressed(0x67)) { // 7 & 8 & 9 // WILL NOT TOGGLE TO RAGE SETTINGS
-		toggleRage *= -1
-		Thread.sleep(250)
-	}
-	if (keyPressed(TOGGLE_KEY_AIM)) {
-		toggleAIM *= -1
-		Thread.sleep(250)
-	}
-	if (keyPressed(TOGGLE_KEY_RCS)) {
-		toggleRCS *= -1
-		Thread.sleep(250)
-	}
-	if (keyPressed(TOGGLE_KEY_ESP)) {
-		toggleESP *= -1
-		Thread.sleep(250)
-	}
-	if (keyPressed(TOGGLE_KEY_BUNNYHOP)) {
-		toggleBunnyHop *= -1
-		Thread.sleep(250)
-	}
-	if (keyPressed(TOGGLE_KEY_TRIGGER)) {
-		toggleTrigger *= -1
-		Thread.sleep(250)
-	}
-	if (keyPressed(TOGGLE_KEY_FLASH)) {
-		toggleFlash *= -1
-		Thread.sleep(250)
+	var wait = -1;
+	if (keyPressed(0x12)) { // Hold alt key + other key(s)
+		if (keyPressed(0x69) && keyPressed(0x68) && keyPressed(0x67)) { // 7 & 8 & 9 // WILL NOT TOGGLE TO RAGE SETTINGS
+			toggleRage *= -1
+			wait = 1;
+		}
+		if (keyPressed(TOGGLE_KEY_AIM)) {
+			toggleAIM *= -1
+			wait = 1;
+		}
+		if (keyPressed(TOGGLE_KEY_RCS)) {
+			toggleRCS *= -1
+			wait = 1;
+		}
+		if (keyPressed(TOGGLE_KEY_ESP)) {
+			toggleESP *= -1
+			wait = 1;
+		}
+		if (keyPressed(TOGGLE_KEY_BUNNYHOP)) {
+			toggleBunnyHop *= -1
+			wait = 1;
+		}
+		if (keyPressed(TOGGLE_KEY_TRIGGER)) {
+			toggleTrigger *= -1
+			wait = 1;
+		}
+		if (keyPressed(TOGGLE_KEY_FLASH)) {
+			toggleFlash *= -1
+			wait = 1;
+		}
+		if (wait == 1)
+		{
+			Thread.sleep(250)
+			wait = -1;
+		}
 	}
 	return@every
 }
