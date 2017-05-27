@@ -129,8 +129,7 @@ internal inline fun <R> aimScript(duration: Int, crossinline precheck: () -> Boo
 			Thread.sleep(16 + randLong(16))
 	} else {
 		val weapon = me.weapon()
-		if (weapon.isAWP)
-			bone.set(BODY_BONE)
+		// if weapon.isAWP bone.set(BODYORSOMETHING)
 		
 		val boneID = bone.get()
 		val bonePosition = Vector(
@@ -148,9 +147,8 @@ internal inline fun <R> aimScript(duration: Int, crossinline precheck: () -> Boo
 				return@every
 			else
 				click()
-		} else if (weapon.sniper && weapon.boltAction && me.isScoped()) {
+		} else if (weapon.sniper && weapon.boltAction && me.isScoped() && ENABLE_FLAT_AIM) {
 			doAim(destinationAngle, currentAngle, 3)
-			doAim(destinationAngle, currentAngle, 2)
 		}
 		else
 			doAim(destinationAngle, currentAngle, aimSpeed)
