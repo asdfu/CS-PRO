@@ -32,18 +32,15 @@ import com.charlatano.game.offsets.ClientOffsets.dwLocalPlayer
 import com.charlatano.game.offsets.ScaleFormOffsets.bCursorEnabled
 import com.charlatano.scripts.aim.bone
 import com.charlatano.scripts.aim.perfect
-import com.charlatano.scripts.*
 import com.charlatano.settings.*
 import com.charlatano.utils.*
 import com.charlatano.utils.extensions.uint
-import org.jire.arrowhead.keyPressed
 
 private @Volatile var prevFired = 0
 private val lastPunch = DoubleArray(2)
 
-
 fun rcs() = every(RCS_DURATION) {
-	if (!ENABLE_RCS || toggleRCS < 0) return@every
+	if (!ENABLE_RCS) return@every
 	
 	val myAddress: Player = clientDLL.uint(dwLocalPlayer)
 	if (myAddress <= 0) return@every
@@ -64,8 +61,8 @@ fun rcs() = every(RCS_DURATION) {
 	
 	val punch = Vector(csgoEXE.float(myAddress + vecPunch).toDouble(),
 			csgoEXE.float(myAddress + vecPunch + 4).toDouble(), 0.0).apply {
-		x *= 2.0
-		y *= 2.0
+		x *= if (RCS_MAX > RCS_MIN) randDouble(RCS_MIN, RCS_MAX) else RCS_MIN
+		y *= if (RCS_MAX > RCS_MIN) randDouble(RCS_MIN, RCS_MAX) else RCS_MIN
 		z = 0.0
 		normalize()
 	}
@@ -84,8 +81,9 @@ fun rcs() = every(RCS_DURATION) {
 		normalize()
 	}
 	
-		pathAim(clientState.angle(), view, RCS_SMOOTHING)
-		//flatAim(clientState.angle(), view, RCS_SMOOTHING.toDouble())
+	// maybe swap with flat aim for better accuracy
+	// but really you'd only need it in LEM+
+	pathAim(clientState.angle(), view, RCS_SMOOTHING)
 	
 	lastPunch[0] = punch.x
 	lastPunch[1] = punch.y
